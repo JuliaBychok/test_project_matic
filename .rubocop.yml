@@ -1,0 +1,43 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+# Common configuration.
+AllCops:
+  TargetRubyVersion: 3.0.1
+  NewCops: enable
+  # Include common Ruby source files.
+  Include:
+    - '**/*.rb'
+    - Gemfile
+    - Rakefile
+  Exclude:
+    - vendor/**/*
+    - lib/tasks/**/*
+    - node_modules/**/*
+    - coverage/**/*
+    - rubycritic/**/*
+    - storage/**/*
+    - tmp/**/*
+    - log/**/*
+    - .git/**/*
+    - bin/*
+    - script/*
+    - config.ru
+    - config/**/*
+    - db/**/*
+    - app/queries/**/*
+    - db/schema.rb
+
+# Check with yard instead.
+Style/Documentation:
+  Enabled: false
+
+# Create separate methods/services to be used within block
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/MultipleMemoizedHelpers:
+   Max: 8

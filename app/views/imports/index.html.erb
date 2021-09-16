@@ -1,0 +1,44 @@
+<%= button_to 'Add import',
+              new_import_path, 
+              method: :get, 
+              class: "btn btn-sm btn-outline-primary" %>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Imports</th>
+      <th>File</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @imports.each do |import| %> 
+        <tr>
+          <td><%= import.title %></td>
+          <td><%= import.attachment.identifier %>
+          <td><%= button_to 'Read',
+                          import_path(import), 
+                          method: :get, 
+                          class: "btn btn-sm btn-outline-primary" %>
+          </td>
+          <% if import.created_status? %>
+            <td><%= button_to 'Edit', 
+                              edit_import_path(import),
+                              method: :get, 
+                              class: "btn btn-sm btn-outline-secondary" %>                  
+            </td>
+          <% else %>
+            <td>Completed import can`t be edited</td>  
+          <% end %> 
+          <td><%= button_to 'Delete', 
+                            import_path(import),
+                            method: :delete, 
+                            class: "btn btn-sm btn-outline-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

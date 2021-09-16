@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Edit import</h1>
+</div>
+
+<%= form_for :imports, url: import_path, method: :patch do |f| %>
+    <div class="form-group">
+      Title: <%= f.text_field :title %>
+    </div>
+    <div class="form-group">
+      File:  <%= f.file_field :attachment %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit 'Save', class: "btn btn-primary save-button" %>
+    </div>
+<% end %>

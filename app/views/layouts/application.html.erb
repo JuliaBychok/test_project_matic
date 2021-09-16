@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MaticTest</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="nav navbar navbar-expand-lg navbar-light bg-light container-fluid">
+        <div class="container">
+          <% unless user_signed_in? %>
+            <ul class="navbar-nav navbar-right">
+              <li class="nav-item ">
+                <a class="nav-link" href="<%= new_user_session_path %>">Sign in</a>
+              </li>
+              <li>
+                <a class="nav-link" href="<%= new_user_registration_path %>">Sign up</a>
+              </li>
+              <li>
+                <a class="nav-item nav-link" href="<%= imports_path %>">Imports</a>
+              </li>
+            </ul>
+          <% else %>      
+              <ul class="navbar-nav navbar-right">
+                <li class="nav-item ">
+                  <a class="nav-item nav-link" href="<%= imports_path %>">Imports</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="<%= destroy_user_session_path %>">Log Out</a>
+                </li>
+              </ul>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <% flash.each do |k, v| %>
+          <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
+

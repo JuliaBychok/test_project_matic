@@ -1,0 +1,24 @@
+<h3 class='inline-block'>Customers</h3>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>date_of_birth</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer['first_name'] %></td>
+        <td><%= customer['last_name'] %></td>
+        <td><%= customer['email'] %></td>
+        <td><%= customer['date_of_birth'] %></td>       
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

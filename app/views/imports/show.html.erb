@@ -1,0 +1,75 @@
+<h3 class='inline-block'>Current import</h3> 
+
+<div class="table-responsive">
+      <% if @import.created_status? %>
+        <div class="form-group">
+        <%= button_to 'Start import', 
+                    import_path(@import),
+                    name: 'imports[process]',
+                    method: :patch, 
+                    class: "btn btn-sm btn-outline-primary mt-10" %>
+        </div>
+        <div class="form-group">
+          <%= button_to 'Edit import', 
+                          edit_import_path(@import),
+                          method: :get, 
+                          class: "btn btn-sm btn-outline-secondary mt-10" %>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= button_to 'Delete import', 
+                      import_path(@import),
+                      method: :delete, 
+                      class: "btn btn-sm btn-outline-danger mt-10" %>
+      </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>File</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @import.title %></td>
+        <td><%= @import.attachment.identifier %></td>     
+      </tr>
+    </tbody>
+  </table>
+</div>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <h5 class='inline-block'>Import details</h5>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Status</th>
+          <th>Created at</th>
+          <% if @import.started_at? %>
+            <th>Started at</th>
+            <th>Completed at</th>
+            <th>Successfully created customers</th>
+            <th>Declined due validations</th>
+          <% end %>
+          <th>Error message</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @import.status %></td> 
+            <td><%= @import.created_at %></td>
+            <% if @import.started_at? %>
+              <td><%= @import.started_at %></td>
+              <td><%= @import.updated_at %></td>
+              <td><%= @import.valid_customers %></td>
+              <td><%= @import.invalid_customers %></td>
+            <% end %>
+            <td><%= @import.error_message %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div> 
+  <% end %>
+<% end %>
